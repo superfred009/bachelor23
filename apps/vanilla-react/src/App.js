@@ -1,23 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import { Header } from './components/Header';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [products, setProducts] = useState([]);
+  const [isLoaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('https://dummyjson.com/products');
+      const data = await response.json();
+      setProducts(data.products);
+      setLoaded(true);
+    }
+    fetchData();
+  }, [products]);
+
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <div>Dette er en react app</div>
+      {products.map((product) => (
+        <div key={product.id} className="card col-6">
+          <div className="card-body">
+            <h5 className="card-title">{product.title}</h5>
+            <p className="card-text">{product.description}</p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
