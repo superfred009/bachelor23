@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import styles from '@/styles/products.module.css';
 
 export default function Hei() {
   const [products, setProducts] = useState([]);
@@ -20,19 +21,29 @@ export default function Hei() {
   return (
     <div>
       <div>Dette er en react app</div>
-      {products.map((product) => (
-        <div key={product.id} className="card col-6">
-          <div className="card-body">
-            <h5 className="card-title">{product.title}</h5>
-            <p className="card-text">{product.description}</p>
+      <div className={styles.body}>
+        {products.map((product) => (
+          <div key={product.id} className={styles.card}>
             <div>
-              {product.images.map((image) => (
-                <img src={image} alt={image} />
-              ))}
+              <h5>{product.title}</h5>
+              <p>{product.description}</p>
+              <div>
+                <img src={product.images[0]} alt={product.images[0]} />
+              </div>
             </div>
+            <button
+              onClick={() => {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push(product);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                console.log('Your Cart', cart);
+              }}
+            >
+              Add to cart
+            </button>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
