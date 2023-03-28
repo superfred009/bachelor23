@@ -2,7 +2,23 @@
 	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
-	import ProductList from '../components/ProductList.svelte';
+
+
+import { onMount } from "svelte";
+import { apiData, drinkNames } from './store.js';
+onMount(async () => {
+  fetch("https://dummyjson.com/products")
+  .then(response => response.json())
+  .then(data => {
+		console.log(data);
+    	apiData.set(data);
+  }).catch(error => {
+    console.log(error);
+    return [];
+  });
+});
+
+
 </script>
 
 <svelte:head>
@@ -26,6 +42,12 @@
 		try editing <strong>src/routes/+page.svelte</strong>
 	</h2>
 
+	<h3>Whiskey Drinks Menu</h3>
+	<ul>
+	{#each $drinkNames as drinkName}
+		<li>{drinkName}</li>
+	{/each}
+	</ul>
 	<Counter />
 	<ProductList/>
 </section>
