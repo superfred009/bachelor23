@@ -1,8 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import HandleListe from './HandleListe';
 
 const Component = () => {
   const [products, setProducts] = useState([]);
   const [isLoaded, setLoaded] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  
+  const addToCart = (product) => {
+    const productExist = selectedProducts.find(
+      (item) => item.id === product.id
+    );
+    if (productExist) {
+      setSelectedProducts(
+        selectedProducts.map((item) =>
+          item.id === product.id
+            ? { ...productExist, quantity: productExist.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      setSelectedProducts([
+        ...selectedProducts,
+        {
+          ...product,
+          quantity: 1,
+        },
+      ]);
+    }
+  };  
 
   useEffect(() => {
     async function fetchData() {
@@ -20,6 +45,9 @@ const Component = () => {
   return (
     <div>
       <div>Dette er en react app</div>
+      <div className="App">
+        <HandleListe selectedProducts={selectedProducts} />
+      </div>
       {products.map((product) => (
         <div key={product.id} className="card col-6">
           <div className="card-body">
@@ -30,6 +58,13 @@ const Component = () => {
                 <img src={image} alt={image} />
               ))}
             </div>
+            <button
+              onClick={() => {
+                addToCart(product);
+              }}
+            >
+              Add to cart
+            </button>
           </div>
         </div>
       ))}
