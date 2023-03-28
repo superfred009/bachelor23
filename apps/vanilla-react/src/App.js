@@ -24,16 +24,36 @@ function App() {
   }
 
   const addToCart = (product) => {
-    const newProduct = { ...product };
-    setSelectedProducts((prevSelectedProducts) => [...prevSelectedProducts, newProduct]);
+    //const newProduct = { ...product };
+    //setSelectedProducts((prevSelectedProducts) => [...prevSelectedProducts, newProduct]);
+
+    const ProductExist = selectedProducts.find(
+      (item) => item.id === product.id
+    );
+    if (ProductExist) {
+      setSelectedProducts(
+        selectedProducts.map((item) =>
+          item.id === product.id
+            ? { ...ProductExist, quantity: ProductExist.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      setSelectedProducts([
+        ...selectedProducts,
+        {
+          ...product,
+          quantity: 1,
+        },
+      ]);
+    }
   };
-  
 
   return (
     <div>
       <Header />
       <div>Dette er en react app</div>
-      <div className='App'>
+      <div className="App">
         <HandleListe selectedProducts={selectedProducts} />
       </div>
       {products.map((product) => (

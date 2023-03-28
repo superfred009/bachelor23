@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const HandleListe = ({selectedProducts=[]}) => {
+const HandleListe = ({ selectedProducts = [] }) => {
   const [name, setName] = useState('');
 
   const handleNameChange = (e) => {
@@ -21,7 +21,10 @@ const HandleListe = ({selectedProducts=[]}) => {
       <h3>Handleliste for {name}:</h3>
       <ul>
         {selectedProducts.map((product) => (
-          <li key={product.id}>{product.title}</li>
+          <li key={product.id}>
+            {product.title}
+            {product.quantity > 1 && ` x ${product.quantity}`}
+          </li>
         ))}
       </ul>
     </div>
