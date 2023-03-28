@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 
-const HandleListe = ({ selectedProducts = [] }) => {
+export const HandleListe = ({ selectedProducts = [] }) => {
   const [name, setName] = useState('');
 
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
-  console.log(selectedProducts);
+
+  const handleBuyCart = () => {
+    alert('Kjøp handleliste for', name);
+  };
+
+  const emptyCart = selectedProducts.length === 0;
 
   return (
     <div>
@@ -27,8 +32,9 @@ const HandleListe = ({ selectedProducts = [] }) => {
           </li>
         ))}
       </ul>
+      <button onClick={handleBuyCart} disabled={emptyCart}>
+        Kjøp handleliste
+      </button>
     </div>
   );
 };
-
-export default HandleListe;

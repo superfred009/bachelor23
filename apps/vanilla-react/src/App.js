@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import { Header } from './components/Header';
 import { useEffect, useState } from 'react';
-import HandleListe from './components/HandleListe';
+import { HandleListe } from './components/HandleListe';
 
 function App() {
   const [products, setProducts] = useState([]);
