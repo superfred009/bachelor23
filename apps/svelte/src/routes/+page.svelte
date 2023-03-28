@@ -3,6 +3,7 @@
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 
+
 import { onMount } from "svelte";
 import { apiData, drinkNames } from './store.js';
 onMount(async () => {
@@ -48,6 +49,7 @@ onMount(async () => {
 	{/each}
 	</ul>
 	<Counter />
+	<ProductList/>
 </section>
 
 <style>
