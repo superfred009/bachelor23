@@ -16,3 +16,9 @@
   transition: color 0.15s ease, border-color 0.15s ease;
   max-width: 520px;
 }
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 20px;
+}

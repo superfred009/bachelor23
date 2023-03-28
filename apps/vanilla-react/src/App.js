@@ -25,9 +25,6 @@ function App() {
   }
 
   const addToCart = (product) => {
-    //const newProduct = { ...product };
-    //setSelectedProducts((prevSelectedProducts) => [...prevSelectedProducts, newProduct]);
-
     const ProductExist = selectedProducts.find(
       (item) => item.id === product.id
     );

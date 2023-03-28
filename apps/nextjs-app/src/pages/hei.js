@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import styles from '@/styles/products.module.css';
+import { HandleListe } from '@/components/HandleListe';
 
 export default function Hei() {
   const [products, setProducts] = useState([]);
   const [isLoaded, setLoaded] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -15,12 +17,37 @@ export default function Hei() {
     fetchData();
   }, [products]);
 
+  const addToCart = (product) => {
+    const ProductExist = selectedProducts.find(
+      (item) => item.id === product.id
+    );
+    if (ProductExist) {
+      setSelectedProducts(
+        selectedProducts.map((item) =>
+          item.id === product.id
+            ? { ...ProductExist, quantity: ProductExist.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      setSelectedProducts([
+        ...selectedProducts,
+        {
+          ...product,
+          quantity: 1,
+        },
+      ]);
+    }
+  };
+
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
+
   return (
     <div>
       <div>Dette er en react app</div>
+      <HandleListe selectedProducts={selectedProducts} />
       <div className={styles.body}>
         {products.map((product) => (
           <div key={product.id} className={styles.card}>
@@ -33,10 +60,7 @@ export default function Hei() {
             </div>
             <button
               onClick={() => {
-                const cart = JSON.parse(localStorage.getItem('cart')) || [];
-                cart.push(product);
-                localStorage.setItem('cart', JSON.stringify(cart));
-                console.log('Your Cart', cart);
+                addToCart(product);
               }}
             >
               Add to cart
