@@ -8,7 +8,7 @@ export const HandleListe = ({ selectedProducts = [] }) => {
   };
 
   const handleBuyCart = () => {
-    alert('Kjøp handleliste for', name);
+    alert(`Kjøp handleliste for ${name}`);
   };
 
   const emptyCart = selectedProducts.length === 0;
