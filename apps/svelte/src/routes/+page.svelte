@@ -49,7 +49,6 @@ onMount(async () => {
 	{/each}
 	</ul>
 	<Counter />
-	<ProductList/>
 </section>
 
 <style>

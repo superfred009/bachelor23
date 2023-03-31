@@ -1,8 +1,6 @@
-import React from 'react';
 import './App.css';
-import React from 'react';
 import { Header } from './components/Header';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HandleListe } from './components/HandleListe';
 
 function App() {
