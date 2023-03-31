@@ -3,6 +3,7 @@
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 
+
 import { onMount } from "svelte";
 import { apiData, titleNames, description, images } from './store.js';
 import type { Product } from './types';
@@ -92,6 +93,7 @@ const getRandomUser = async () => {
 	-->
 	
 	<Counter />
+	<ProductList/>
 </section>
 
 <style>
