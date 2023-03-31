@@ -1,17 +1,23 @@
-<script>
+<script lang="ts">
 	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
 
 
 import { onMount } from "svelte";
-import { apiData, drinkNames } from './store.js';
+import { apiData, titleNames, description, images } from './store.js';
+import type { Product } from './types';
+
+
+let produkter: Product[] = [];
+
 onMount(async () => {
   fetch("https://dummyjson.com/products")
   .then(response => response.json())
   .then(data => {
 		console.log(data);
     	apiData.set(data);
+		produkter = data;
   }).catch(error => {
     console.log(error);
     return [];
@@ -19,6 +25,17 @@ onMount(async () => {
 });
 
 
+
+
+/*
+const getRandomUser = async () => {
+		var response = await fetch('https://dummyjson.com/products');
+		var result = await response.json();
+		return result;
+	}
+	
+	let userPromise = getRandomUser();
+*/
 </script>
 
 <svelte:head>
@@ -42,12 +59,39 @@ onMount(async () => {
 		try editing <strong>src/routes/+page.svelte</strong>
 	</h2>
 
+
+	<li>{produkter}</li>
+
 	<h3>Whiskey Drinks Menu</h3>
+	<li>test</li>
 	<ul>
-	{#each $drinkNames as drinkName}
-		<li>{drinkName}</li>
+		<li>test</li>
+	{#each $titleNames as titles}
+		<li>{titles}</li>
 	{/each}
-	</ul>
+	{#each $description as beskrivelse}
+		<li>{beskrivelse}</li>
+	{/each}
+	{#each $images as bilder}
+		<li>{bilder}</li>
+	{/each}
+
+
+	<!--
+	<h1>Random User name</h1>
+
+	{#each $titleNames as titles}
+		<li>{titles}</li>
+	{/each}
+	{#await userPromise}
+		<h2>Loading....</h2>
+	{:then produkt}
+		<h2>{produkt.products[0].title}</h2>
+	{:catch err}
+		<h2>Error while loading the data</h2>
+	{/await}
+	-->
+	
 	<Counter />
 </section>
 
