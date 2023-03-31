@@ -8,7 +8,10 @@ export const HandleListe = ({ selectedProducts = [] }) => {
   };
 
   const handleBuyCart = () => {
-    alert('Kjøp handleliste for', name);
+    const productList = selectedProducts.map((product) => {
+      return `${product.title} x ${product.quantity}`;
+    });
+    alert(`Kjøp handleliste for ${name} med produktene:\n${productList.join('\n')}`);
   };
 
   const emptyCart = selectedProducts.length === 0;
