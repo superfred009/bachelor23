@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export const HandleListe = ({ selectedProducts = [] }) => {
   const [name, setName] = useState('');
@@ -8,10 +8,7 @@ export const HandleListe = ({ selectedProducts = [] }) => {
   };
 
   const handleBuyCart = () => {
-    const productList = selectedProducts.map((product) => {
-      return `${product.title} x ${product.quantity}`;
-    });
-    alert(`Kjøp handleliste for ${name} med produktene:\n${productList.join('\n')}`);
+    alert(`Kjøp handleliste for ${name}`);
   };
 
   const emptyCart = selectedProducts.length === 0;

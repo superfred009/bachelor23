@@ -16,3 +16,28 @@
   transition: color 0.15s ease, border-color 0.15s ease;
   max-width: 520px;
 }
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 100px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.header_container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: black;
+}
+
+.header_cart {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
