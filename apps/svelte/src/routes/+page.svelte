@@ -1,17 +1,36 @@
+<!--
 <script lang="ts">
 	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
-
+	import {load} from './+page'
 
 import { onMount } from "svelte";
 import { apiData, titleNames, description, images } from './store.js';
-import type { Product } from './types';
+//import type { Product } from './types';
 
+//let produkter: Product[] = [];
 
-let produkter: Product[] = [];
+/*
+let produkter = [];
 
 onMount(async () => {
+	produkter = await getProduct();
+});
+*/
+
+const getProduct = async () => {
+	const res = await fetch("https://jsonplaceholder.typicode.com/photos");
+	const data = await res.json();
+	const filterdData = data.slice(0,3);
+	console.log(filterdData);
+	return filterdData;
+};
+
+
+
+
+/*onMount(async () => {
   fetch("https://dummyjson.com/products")
   .then(response => response.json())
   .then(data => {
@@ -23,6 +42,7 @@ onMount(async () => {
     return [];
   });
 });
+*/
 
 
 
@@ -60,40 +80,24 @@ const getRandomUser = async () => {
 	</h2>
 
 
-	<li>{produkter}</li>
 
 	<h3>Whiskey Drinks Menu</h3>
 	<li>test</li>
-	<ul>
-		<li>test</li>
-	{#each $titleNames as titles}
-		<li>{titles}</li>
-	{/each}
-	{#each $description as beskrivelse}
-		<li>{beskrivelse}</li>
-	{/each}
-	{#each $images as bilder}
-		<li>{bilder}</li>
-	{/each}
 
-
-	<!--
-	<h1>Random User name</h1>
-
-	{#each $titleNames as titles}
-		<li>{titles}</li>
-	{/each}
-	{#await userPromise}
-		<h2>Loading....</h2>
-	{:then produkt}
-		<h2>{produkt.products[0].title}</h2>
-	{:catch err}
-		<h2>Error while loading the data</h2>
+	{#await getProduct()}
+		<p>loading...</p>		
+	{:then data}
+		{#each data as { title, description }}
+			<div>
+				<p>{title}</p>
+				<p>{description}</p>
+			</div>
+		{/each}
 	{/await}
-	-->
+
+
 	
 	<Counter />
-	<ProductList/>
 </section>
 
 <style>
@@ -125,3 +129,44 @@ const getRandomUser = async () => {
 		display: block;
 	}
 </style>
+-->
+<script lang="ts">
+	import type { Product } from "./types/Product";
+	import { load } from "./utils/products";
+  
+	let products: Product[] = [];
+  
+	async function fetchData() {
+	  products = await load();
+	}
+  
+	$: {
+	  fetchData();
+	}
+  </script>
+  
+  <main>
+	<h1>Products</h1>
+  
+	<ul>
+	  {#each products as product}
+		<li>
+		  <h2>{product.title}</h2>
+		  <p>{product.description}</p>
+		  <p>Price: ${product.price}</p>
+		  <p>Discount: {product.discountPercentage}%</p>
+		  <p>Rating: {product.rating}</p>
+		  <p>Stock: {product.stock}</p>
+		  <p>Brand: {product.brand}</p>
+		  <p>Category: {product.category}</p>
+		  <img src={product.thumbnail} alt={product.title} />
+		  <div>
+			{#each product.images as image}
+			  <img src={image} alt={product.title} />
+			{/each}
+		  </div>
+		</li>
+	  {/each}
+	</ul>
+  </main>
+  
