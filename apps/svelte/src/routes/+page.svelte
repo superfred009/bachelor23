@@ -131,6 +131,7 @@ const getRandomUser = async () => {
 </style>
 -->
 <script lang="ts">
+	import { onMount } from "svelte";
 	import type { Product } from "./types/Product";
 	import { load } from "./utils/products";
   
@@ -140,9 +141,7 @@ const getRandomUser = async () => {
 	  products = await load();
 	}
   
-	$: {
-	  fetchData();
-	}
+	onMount(fetchData);
   </script>
   
   <main>
