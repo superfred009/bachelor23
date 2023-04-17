@@ -12,12 +12,7 @@ export const CheckoutForm = () => {
 
   useEffect(() => {
     if (router.query.products) {
-      console.log('JSON PARSE', JSON.parse(router.query.products));
-      const data = JSON.parse(router.query.products);
-      console.log('DATA', data);
-      setProducts(data);
-      //setProducts(JSON.parse(router.query.products));
-      console.log('PRODUCTS', products);
+      setProducts(JSON.parse(router.query.products));
     }
   }, [router.query.products]);
 
@@ -76,7 +71,12 @@ export const CheckoutForm = () => {
         {isSubmitting ? 'Submitting...' : 'Submit'}
       </button>
 
-      {showNotification && <p>Form submitted successfully!</p>}
+      {showNotification && (
+        <div>
+          <p>Form submitted successfully!</p>
+          <button onClick={() => router.push('/')}>Hjem</button>
+        </div>
+      )}
     </form>
   );
 };
