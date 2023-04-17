@@ -10,7 +10,8 @@
 		"sourceMap": true,
 		"strict": true,
 		"ignoreDeprecations": "5.0", // Add this line to silence the error
-		"verbatimModuleSyntax": true // Use verbatimModuleSyntax instead of importsNotUsedAsValues
+		"verbatimModuleSyntax": true, // Use verbatimModuleSyntax instead of importsNotUsedAsValues
+		"strictNullChecks": true
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias and https://kit.svelte.dev/docs/configuration#files
 	//

@@ -3,6 +3,8 @@
 	import { onMount } from "svelte";
 	import type { Product } from "./types/Product";
 	import { load } from "./utils/products";
+
+	import Lazy from "svelte-lazy"; // Import Lazy component
   
 	let products: Product[] = [];
   
@@ -30,7 +32,9 @@
 		  <img src={product.thumbnail} alt={product.title} />
 		  <div>
 			{#each product.images as image}
+			<Lazy>
 			  <img src={image} alt={product.title} />
+			</Lazy>
 			{/each}
 		  </div>
 		</li>
