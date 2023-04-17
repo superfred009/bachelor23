@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from '@/styles/products.module.css';
-import { HandleListe } from '@/components/HandleListe';
-import { CartModal } from '@/components/CartModal';
+import { ShoppingCart } from '@/components/ShoppingCart';
+import Image from 'next/image';
 
 export default function Hei() {
   const [products, setProducts] = useState([]);
@@ -55,7 +55,7 @@ export default function Hei() {
     <div>
       <div className={styles.header_container}>
         <div className={styles.header}>
-          <h1>Dette er en react app</h1>
+          <h1>Products</h1>
           <button onClick={() => setToggleCart(!toggleCart)}>
             Handlekurv {numberOfProducts > 0 && `(${numberOfProducts})`}
           </button>
@@ -63,7 +63,7 @@ export default function Hei() {
 
         {toggleCart && (
           <div className={styles.header_cart}>
-            <HandleListe selectedProducts={selectedProducts} />
+            <ShoppingCart selectedProducts={selectedProducts} />
           </div>
         )}
       </div>
@@ -74,9 +74,12 @@ export default function Hei() {
               <h5>{product.title}</h5>
               <p>{product.description}</p>
               <div>
-                <img
+                <Image
                   src={product.images[0]}
                   alt={`Image of ${product.title}`}
+                  width={500}
+                  height={500}
+                  loading="lazy"
                 />
               </div>
             </div>

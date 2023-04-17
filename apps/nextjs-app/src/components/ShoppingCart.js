@@ -1,14 +1,19 @@
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-export const HandleListe = ({ selectedProducts = [] }) => {
+export const ShoppingCart = ({ selectedProducts = [] }) => {
   const [name, setName] = useState('');
+  const router = useRouter();
 
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
   const handleBuyCart = () => {
-    alert(`Kjøp handleliste for ${name}`);
+    router.push({
+      pathname: '/checkout',
+      query: { products: JSON.stringify(selectedProducts) },
+    });
   };
 
   const emptyCart = selectedProducts.length === 0;
