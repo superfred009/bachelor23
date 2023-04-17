@@ -1,12 +1,9 @@
-import { Inter } from '@next/font/google';
-import Hei from './hei';
-
-const inter = Inter({ subsets: ['latin'] });
+import ProductPage from '../components/ProductPage';
 
 export default function Home() {
   return (
     <>
-      <Hei />
+      <ProductPage />
     </>
   );
 }
