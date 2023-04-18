@@ -59,6 +59,7 @@ function App() {
       toggleCart={toggleCart}
       selectedProducts={selectedProducts}
       />
+      <div className='products-body'>
       {products.map((product) => (
         <div key={product.id} className="card col-6">
           <div className="card-body">
@@ -79,6 +80,7 @@ function App() {
           </div>
         </div>
       ))}
+      </div>
     </div>
   );
 }

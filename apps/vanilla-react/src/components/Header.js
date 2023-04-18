@@ -1,12 +1,11 @@
 import React from 'react';
-import './header.css';
 import {HandleListe} from './HandleListe';
 
 export const Header = ({numberOfProducts, setToggleCart, toggleCart, selectedProducts}) => {
   return (
-    <header>
-      <div>
-      <h1 className="header">Producst</h1>
+    <header className='header_container'>
+      <div className='header'>
+      <h1>Products</h1>
       <button onClick={() => setToggleCart(!toggleCart)}>
         Handlekurv {numberOfProducts > 0 && `(${numberOfProducts})`}
       </button>
@@ -16,7 +15,6 @@ export const Header = ({numberOfProducts, setToggleCart, toggleCart, selectedPro
           <HandleListe selectedProducts={selectedProducts} />
         </div>
       )}
-
     </header>
   );
 };
