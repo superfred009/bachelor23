@@ -3,12 +3,15 @@ import { Header } from './components/Header';
 import React, { useEffect, useState } from 'react';
 import { HandleListe } from './components/HandleListe';
 
+
+
 function App() {
   const [products, setProducts] = useState([]);
   const [isLoaded, setLoaded] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [toggleCart, setToggleCart] = useState(false);
 
+  
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('https://dummyjson.com/products');
@@ -18,10 +21,13 @@ function App() {
     }
     fetchData();
   }, []);
+  
 
+  
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
+  
 
   const addToCart = (product) => {
     const ProductExist = selectedProducts.find(
@@ -51,6 +57,7 @@ function App() {
     0
   );
 
+
   return (
     <div>
       <Header
@@ -67,7 +74,7 @@ function App() {
             <p className="card-text">{product.description}</p>
             <div>
               {product.images.map((image) => (
-                <img src={image} key={image} alt={image} />
+                <img src={image} key={image} alt={image} loading='lazy' />
               ))}
             </div>
             <button
