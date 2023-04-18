@@ -7,6 +7,7 @@ function App() {
   const [products, setProducts] = useState([]);
   const [isLoaded, setLoaded] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [toggleCart, setToggleCart] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -45,13 +46,19 @@ function App() {
     }
   };
 
+  const numberOfProducts = selectedProducts.reduce(
+    (total, product) => total + product.quantity,
+    0
+  );
+
   return (
     <div>
-      <Header />
-      <div>Dette er en react app</div>
-      <div className="App">
-        <HandleListe selectedProducts={selectedProducts} />
-      </div>
+      <Header
+      numberOfProducts={numberOfProducts} 
+      setToggleCart={setToggleCart}
+      toggleCart={toggleCart}
+      selectedProducts={selectedProducts}
+      />
       {products.map((product) => (
         <div key={product.id} className="card col-6">
           <div className="card-body">
