@@ -44,7 +44,6 @@ const Component = () => {
   }
   return (
     <div>
-      <div>Dette er en react app</div>
       <div className="App">
         <HandleListe selectedProducts={selectedProducts} />
       </div>
