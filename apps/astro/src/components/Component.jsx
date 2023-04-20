@@ -37,7 +37,7 @@ const Component = () => {
       setLoaded(true);
     }
     fetchData();
-  }, [products]);
+  }, []);
 
   if (!isLoaded) {
     return <div>Loading...</div>;
