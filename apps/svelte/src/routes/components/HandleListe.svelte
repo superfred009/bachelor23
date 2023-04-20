@@ -18,9 +18,7 @@
   
     const emptyCart = selectedProducts.length === 0;
   </script>
-  
-  <!-- Rest of the component code -->
-  
+    
   
   <div>
     <h2>Handleliste</h2>
