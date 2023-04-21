@@ -51,6 +51,8 @@ export const ProductsGrid = ({ products }) => {
   //   return <div>Loading...</div>;
   // }
 
+  console.log(products);
+
   return (
     <div>
       <div className={styles.header_container}>
@@ -73,23 +75,27 @@ export const ProductsGrid = ({ products }) => {
             <div>
               <h5>{product.title}</h5>
               <p>{product.description}</p>
+              <button
+                onClick={() => {
+                  addToCart(product);
+                }}
+              >
+                Add to cart
+              </button>
               <div>
-                <Image
-                  src={product.images[0]}
-                  alt={`Image of ${product.title}`}
-                  width={500}
-                  height={500}
-                  loading="lazy"
-                />
+                {product.images.map((image) => (
+                  <div>
+                    <Image
+                      src={image}
+                      alt={`Image of ${product.title} `}
+                      width={500}
+                      height={500}
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
-            <button
-              onClick={() => {
-                addToCart(product);
-              }}
-            >
-              Add to cart
-            </button>
           </div>
         ))}
       </div>
