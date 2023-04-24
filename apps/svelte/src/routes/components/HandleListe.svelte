@@ -28,7 +28,6 @@
       value={name}
       on:input={handleNameChange}
     />
-    <h3>Velg produkter:</h3>
     <h3>Handleliste for {name}:</h3>
     <ul>
         {#each selectedProducts as product}
