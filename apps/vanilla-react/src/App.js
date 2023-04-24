@@ -3,15 +3,11 @@ import { Header } from './components/Header';
 import React, { useEffect, useState } from 'react';
 import { HandleListe } from './components/HandleListe';
 
-
-
 function App() {
   const [products, setProducts] = useState([]);
   const [isLoaded, setLoaded] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [toggleCart, setToggleCart] = useState(false);
 
-  
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('https://dummyjson.com/products');
@@ -21,13 +17,10 @@ function App() {
     }
     fetchData();
   }, []);
-  
 
-  
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
-  
 
   const addToCart = (product) => {
     const ProductExist = selectedProducts.find(
@@ -57,36 +50,33 @@ function App() {
     0
   );
 
-
   return (
     <div>
       <Header
-      numberOfProducts={numberOfProducts} 
-      setToggleCart={setToggleCart}
-      toggleCart={toggleCart}
-      selectedProducts={selectedProducts}
+        numberOfProducts={numberOfProducts}
+        selectedProducts={selectedProducts}
       />
-      <div className='products-body'>
-      {products.map((product) => (
-        <div key={product.id} className="card col-6">
-          <div className="card-body">
-            <h5 className="card-title">{product.title}</h5>
-            <p className="card-text">{product.description}</p>
-            <div>
-              {product.images.map((image) => (
-                <img src={image} key={image} alt={image} loading='lazy' />
-              ))}
+      <div className="products-body">
+        {products.map((product) => (
+          <div key={product.id} className="card col-6">
+            <div className="card-body">
+              <h5 className="card-title">{product.title}</h5>
+              <p className="card-text">{product.description}</p>
+              <div>
+                {product.images.map((image) => (
+                  <img src={image} key={image} alt={image} loading="lazy" />
+                ))}
+              </div>
+              <button
+                onClick={() => {
+                  addToCart(product);
+                }}
+              >
+                Add to cart
+              </button>
             </div>
-            <button
-              onClick={() => {
-                addToCart(product);
-              }}
-            >
-              Add to cart
-            </button>
           </div>
-        </div>
-      ))}
+        ))}
       </div>
     </div>
   );
