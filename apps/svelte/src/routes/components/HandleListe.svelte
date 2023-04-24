@@ -1,13 +1,12 @@
-<script lang="ts" context="module">
+<script lang="ts">
     import type { Product } from "../types/Product";
     export let selectedProducts: Product[] = [];
-  </script>
   
-  <script>
     let name = "";
   
-    const handleNameChange = (e) => {
-      name = e.target.value;
+    const handleNameChange = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      name = target.value;
     };
   
     const handleBuyCart = () => {
@@ -19,6 +18,7 @@
   
     const emptyCart = selectedProducts.length === 0;
   </script>
+    
   
   <div>
     <h2>Handleliste</h2>
@@ -28,7 +28,6 @@
       value={name}
       on:input={handleNameChange}
     />
-    <h3>Velg produkter:</h3>
     <h3>Handleliste for {name}:</h3>
     <ul>
         {#each selectedProducts as product}
