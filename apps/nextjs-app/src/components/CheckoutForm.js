@@ -62,7 +62,8 @@ export const CheckoutForm = () => {
       <ul>
         {products.map((product) => (
           <li key={product.id}>
-            {product.title} - {product.price}
+            {product.title}
+            {product.quantity > 1 && ` x ${product.quantity}`} - {product.price}
           </li>
         ))}
       </ul>
