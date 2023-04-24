@@ -3,21 +3,21 @@ import styles from '@/styles/products.module.css';
 import { ShoppingCart } from '@/components/ShoppingCart';
 import Image from 'next/image';
 
-export default function Hei() {
-  const [products, setProducts] = useState([]);
-  const [isLoaded, setLoaded] = useState(false);
+export const ProductsGrid = ({ products }) => {
+  //const [products, setProducts] = useState([]);
+  //const [isLoaded, setLoaded] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [toggleCart, setToggleCart] = useState(false);
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('https://dummyjson.com/products');
-      const data = await response.json();
-      setProducts(data.products);
-      setLoaded(true);
-    }
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const response = await fetch('https://dummyjson.com/products');
+  //     const data = await response.json();
+  //     setProducts(data.products);
+  //     setLoaded(true);
+  //   }
+  //   fetchData();
+  // }, []);
 
   const addToCart = (product) => {
     const ProductExist = selectedProducts.find(
@@ -47,9 +47,11 @@ export default function Hei() {
     0
   );
 
-  if (!isLoaded) {
-    return <div>Loading...</div>;
-  }
+  // if (!isLoaded) {
+  //   return <div>Loading...</div>;
+  // }
+
+  console.log(products);
 
   return (
     <div>
@@ -73,26 +75,30 @@ export default function Hei() {
             <div>
               <h5>{product.title}</h5>
               <p>{product.description}</p>
+              <button
+                onClick={() => {
+                  addToCart(product);
+                }}
+              >
+                Add to cart
+              </button>
               <div>
-                <Image
-                  src={product.images[0]}
-                  alt={`Image of ${product.title}`}
-                  width={500}
-                  height={500}
-                  loading="lazy"
-                />
+                {product.images.map((image) => (
+                  <div>
+                    <Image
+                      src={image}
+                      alt={`Image of ${product.title} `}
+                      width={500}
+                      height={500}
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
-            <button
-              onClick={() => {
-                addToCart(product);
-              }}
-            >
-              Add to cart
-            </button>
           </div>
         ))}
       </div>
     </div>
   );
-}
+};

@@ -1,12 +1,20 @@
-import { Inter } from '@next/font/google';
-import Hei from './hei';
+import { ProductsGrid } from '../components/ProductPage';
 
-const inter = Inter({ subsets: ['latin'] });
-
-export default function Home() {
+export default function Home({ products }) {
   return (
     <>
-      <Hei />
+      <ProductsGrid products={products} />
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch('https://dummyjson.com/products');
+  const data = await res.json();
+
+  return {
+    props: {
+      products: data.products,
+    },
+  };
 }
