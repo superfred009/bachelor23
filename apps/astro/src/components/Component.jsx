@@ -37,14 +37,13 @@ const Component = () => {
       setLoaded(true);
     }
     fetchData();
-  }, [products]);
+  }, []);
 
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
   return (
     <div>
-      <div>Dette er en react app</div>
       <div className="App">
         <HandleListe selectedProducts={selectedProducts} />
       </div>
