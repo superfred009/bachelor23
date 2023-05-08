@@ -1,20 +1,11 @@
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-export const CheckoutForm = () => {
-  const router = useRouter();
+export const CheckoutForm = ({ products }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [products, setProducts] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
-
-  useEffect(() => {
-    if (router.query.products) {
-      setProducts(JSON.parse(router.query.products));
-    }
-  }, [router.query.products]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -75,7 +66,6 @@ export const CheckoutForm = () => {
       {showNotification && (
         <div>
           <p>Form submitted successfully!</p>
-          <button onClick={() => router.push('/')}>Hjem</button>
         </div>
       )}
     </form>

@@ -1,23 +1,10 @@
 import { useEffect, useState } from 'react';
-import styles from '@/styles/products.module.css';
-import { ShoppingCart } from '@/components/ShoppingCart';
+
 import Image from 'next/image';
+import { Header } from './Header';
 
 export const ProductsGrid = ({ products }) => {
-  //const [products, setProducts] = useState([]);
-  //const [isLoaded, setLoaded] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [toggleCart, setToggleCart] = useState(false);
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const response = await fetch('https://dummyjson.com/products');
-  //     const data = await response.json();
-  //     setProducts(data.products);
-  //     setLoaded(true);
-  //   }
-  //   fetchData();
-  // }, []);
 
   const addToCart = (product) => {
     const ProductExist = selectedProducts.find(
@@ -47,34 +34,17 @@ export const ProductsGrid = ({ products }) => {
     0
   );
 
-  // if (!isLoaded) {
-  //   return <div>Loading...</div>;
-  // }
-
-  console.log(products);
-
   return (
     <div>
-      <div className={styles.header_container}>
-        <div className={styles.header}>
-          <h1>Products</h1>
-          <button onClick={() => setToggleCart(!toggleCart)}>
-            Handlekurv {numberOfProducts > 0 && `(${numberOfProducts})`}
-          </button>
-        </div>
-
-        {toggleCart && (
-          <div className={styles.header_cart}>
-            <ShoppingCart selectedProducts={selectedProducts} />
-          </div>
-        )}
-      </div>
-      <div className={styles.body}>
+      <Header
+        selectedProducts={selectedProducts}
+        numberOfProducts={numberOfProducts}
+      />
+      <div className="products">
         {products.map((product) => (
-          <div key={product.id} className={styles.card}>
-            <div>
+          <div key={product.id} className="card">
+            <div className="card-items">
               <h5>{product.title}</h5>
-              <p>{product.description}</p>
               <button
                 onClick={() => {
                   addToCart(product);
@@ -82,19 +52,18 @@ export const ProductsGrid = ({ products }) => {
               >
                 Add to cart
               </button>
-              <div>
-                {product.images.map((image) => (
-                  <div>
-                    <Image
-                      src={image}
-                      alt={`Image of ${product.title} `}
-                      width={500}
-                      height={500}
-                      loading="lazy"
-                    />
-                  </div>
-                ))}
-              </div>
+            </div>
+            <p>{product.description}</p>
+            <div className="card-images">
+              {product.images.map((image) => (
+                <Image
+                  src={image}
+                  alt={`Image of ${product.title} `}
+                  width={500}
+                  height={500}
+                  loading="lazy"
+                />
+              ))}
             </div>
           </div>
         ))}

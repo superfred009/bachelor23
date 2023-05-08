@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
+import { CheckoutForm } from './Checkout';
 
 export const HandleListe = ({ selectedProducts = [] }) => {
   const [name, setName] = useState('');
+  const [toggleBuyCart, setToggleBuyCart] = useState(false);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
   const handleBuyCart = () => {
-    const productList = selectedProducts.map((product) => {
-      return `${product.title} x ${product.quantity}`;
-    });
-    alert(`Kjøp handleliste for ${name} med produktene:\n${productList.join('\n')}`);
+    setToggleBuyCart(!toggleBuyCart);
   };
 
   const emptyCart = selectedProducts.length === 0;
@@ -38,6 +37,7 @@ export const HandleListe = ({ selectedProducts = [] }) => {
       <button onClick={handleBuyCart} disabled={emptyCart}>
         Kjøp handleliste
       </button>
+      {toggleBuyCart && <CheckoutForm products={selectedProducts} />}
     </div>
   );
 };

@@ -5,6 +5,7 @@
     export let numberOfProducts = 0;
     export let toggleCart = false;
     export let selectedProducts = [];
+    export let emptyCart = true;
   
     const dispatch = createEventDispatcher();
   
@@ -23,7 +24,7 @@
     </div>
     {#if toggleCart}
       <div class="header_cart">
-        <HandleListe {selectedProducts} />
+        <HandleListe {selectedProducts} {emptyCart} />
       </div>
     {/if}
   </header>

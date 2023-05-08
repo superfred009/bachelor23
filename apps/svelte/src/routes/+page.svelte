@@ -10,6 +10,7 @@
 	let selectedProducts = [];
 	let numberOfProducts = 0;
 	let toggleCart = false;
+	let emptyCart = true;
   
 	async function fetchData() {
 	  products = await load();
@@ -26,6 +27,8 @@
 	
 
 	onMount(fetchData);
+
+	console.log(emptyCart)
   
 	const addToCart = (product) => {
 	  const productExist = selectedProducts.find((item) => item.id === product.id);
@@ -50,6 +53,7 @@
 		(total, product) => total + product.quantity,
 		0
 	  );
+	  emptyCart = selectedProducts.length === 0;
 	};
   </script>
   
@@ -59,6 +63,7 @@
 	  {toggleCart}
 	  {selectedProducts}
 	  on:toggle={() => (toggleCart = !toggleCart)}
+	  {emptyCart}
 	  />
 	  <ul>
 		{#each products as product}
@@ -71,7 +76,9 @@
 			<p>Stock: {product.stock}</p>
 			<p>Brand: {product.brand}</p>
 			<p>Category: {product.category}</p>
-			<img src={product.thumbnail} alt={product.title} />
+			<button on:click={() => addToCart(product)}>
+				Add to cart
+			  </button>
 			<div>
 			  {#each product.images as image}
 				<Lazy>
@@ -79,9 +86,7 @@
 				</Lazy>
 			  {/each}
 			</div>
-			<button on:click={() => addToCart(product)}>
-			  Add to cart
-			</button>
+			
 		  </li>
 		{/each}
 	  </ul>

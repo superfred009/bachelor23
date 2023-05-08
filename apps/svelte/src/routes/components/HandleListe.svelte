@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { Product } from "../types/Product";
     export let selectedProducts: Product[] = [];
+    export let emptyCart = true;
   
     let name = "";
   
@@ -15,8 +16,7 @@
       });
       alert(`Kjøp handleliste for ${name} med produktene:\n${productList.join("\n")}`);
     };
-  
-    const emptyCart = selectedProducts.length === 0;
+
   </script>
     
   

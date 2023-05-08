@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { HandleListe } from './HandleListe';
+import { useState } from 'react';
+import { ShoppingCart } from './ShoppingCart';
 
 export const Header = ({ numberOfProducts, selectedProducts }) => {
   const [toggleCart, setToggleCart] = useState(false);
@@ -11,9 +11,10 @@ export const Header = ({ numberOfProducts, selectedProducts }) => {
           Handlekurv {numberOfProducts > 0 && `(${numberOfProducts})`}
         </button>
       </div>
+
       {toggleCart && (
-        <div className="header_cart">
-          <HandleListe selectedProducts={selectedProducts} />
+        <div className="header-cart">
+          <ShoppingCart selectedProducts={selectedProducts} />
         </div>
       )}
     </header>
