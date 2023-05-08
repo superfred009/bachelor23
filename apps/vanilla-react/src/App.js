@@ -9,10 +9,27 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('https://dummyjson.com/products');
-      const data = await response.json();
-      setProducts(data.products);
-      setLoaded(true);
+      try {
+        // Request API data twice simultaneously
+        const responsePromises = await Promise.all([
+          fetch('https://dummyjson.com/products'),
+          fetch('https://dummyjson.com/products'),
+        ]);
+
+        const dataResponses = await Promise.all(
+          responsePromises.map((response) => response.json())
+        );
+
+        // Combine the data from both API calls
+        const combinedData = dataResponses.flatMap(
+          (response) => response.products
+        );
+
+        setProducts(combinedData);
+        setLoaded(true);
+      } catch (error) {
+        console.error('Error fetching API data:', error);
+      }
     }
     fetchData();
   }, []);
@@ -87,5 +104,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
