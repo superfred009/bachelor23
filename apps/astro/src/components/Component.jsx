@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import HandleListe from './HandleListe';
+import HeaderWithCart from './HeaderWithCart';
 
 const Component = () => {
   const [products, setProducts] = useState([]);
@@ -44,9 +44,7 @@ const Component = () => {
   }
   return (
     <div>
-      <div className="App">
-        <HandleListe selectedProducts={selectedProducts} />
-      </div>
+      <HeaderWithCart selectedProducts={selectedProducts} />
       {products.map((product) => (
         <div key={product.id} className="card col-6">
           <div className="card-body">
