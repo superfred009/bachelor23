@@ -2,10 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import Component from '../components/Component';
 import '../styles/global.css';
+
+const res = await fetch('https://dummyjson.com/products');
+const data = await res.json();
+const products = data.products;
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<Component client:load />
+		<Component products={products} client:load />
 	</main>
 </Layout>

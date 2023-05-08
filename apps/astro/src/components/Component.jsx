@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import HeaderWithCart from './HeaderWithCart';
 
-const Component = () => {
-  const [products, setProducts] = useState([]);
-  const [isLoaded, setLoaded] = useState(false);
+const Component = ({ products }) => {
   const [selectedProducts, setSelectedProducts] = useState([]);
 
   const addToCart = (product) => {
@@ -29,24 +27,11 @@ const Component = () => {
     }
   };
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('https://dummyjson.com/products');
-      const data = await response.json();
-      setProducts(data.products);
-      setLoaded(true);
-    }
-    fetchData();
-  }, []);
-
   const numberOfProducts = selectedProducts.reduce(
     (total, product) => total + product.quantity,
     0
   );
 
-  if (!isLoaded) {
-    return <div>Loading...</div>;
-  }
   return (
     <div>
       <HeaderWithCart
