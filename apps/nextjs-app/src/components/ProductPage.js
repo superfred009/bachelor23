@@ -43,9 +43,8 @@ export const ProductsGrid = ({ products }) => {
       <div className="products">
         {products.map((product) => (
           <div key={product.id} className="card">
-            <div>
+            <div className="card-items">
               <h5>{product.title}</h5>
-              <p>{product.description}</p>
               <button
                 onClick={() => {
                   addToCart(product);
@@ -53,17 +52,18 @@ export const ProductsGrid = ({ products }) => {
               >
                 Add to cart
               </button>
-              <div className="images">
-                {product.images.map((image) => (
-                  <Image
-                    src={image}
-                    alt={`Image of ${product.title} `}
-                    width={500}
-                    height={500}
-                    loading="lazy"
-                  />
-                ))}
-              </div>
+            </div>
+            <p>{product.description}</p>
+            <div className="card-images">
+              {product.images.map((image) => (
+                <Image
+                  src={image}
+                  alt={`Image of ${product.title} `}
+                  width={500}
+                  height={500}
+                  loading="lazy"
+                />
+              ))}
             </div>
           </div>
         ))}
