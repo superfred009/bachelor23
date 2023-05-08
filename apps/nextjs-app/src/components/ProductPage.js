@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import styles from '@/styles/products.module.css';
 
 import Image from 'next/image';
 import { Header } from './Header';
@@ -41,9 +40,9 @@ export const ProductsGrid = ({ products }) => {
         selectedProducts={selectedProducts}
         numberOfProducts={numberOfProducts}
       />
-      <div className={styles.body}>
+      <div className="products">
         {products.map((product) => (
-          <div key={product.id} className={styles.card}>
+          <div key={product.id} className="card">
             <div>
               <h5>{product.title}</h5>
               <p>{product.description}</p>
@@ -54,17 +53,15 @@ export const ProductsGrid = ({ products }) => {
               >
                 Add to cart
               </button>
-              <div>
+              <div className="images">
                 {product.images.map((image) => (
-                  <div>
-                    <Image
-                      src={image}
-                      alt={`Image of ${product.title} `}
-                      width={500}
-                      height={500}
-                      loading="lazy"
-                    />
-                  </div>
+                  <Image
+                    src={image}
+                    alt={`Image of ${product.title} `}
+                    width={500}
+                    height={500}
+                    loading="lazy"
+                  />
                 ))}
               </div>
             </div>
