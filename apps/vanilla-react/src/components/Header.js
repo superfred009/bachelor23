@@ -4,7 +4,7 @@ import { HandleListe } from './HandleListe';
 export const Header = ({ numberOfProducts, selectedProducts }) => {
   const [toggleCart, setToggleCart] = useState(false);
   return (
-    <header className="header_container">
+    <header className="header-container">
       <div className="header">
         <h1>Products</h1>
         <button onClick={() => setToggleCart(!toggleCart)}>

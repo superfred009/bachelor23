@@ -1,7 +1,6 @@
 import './App.css';
 import { Header } from './components/Header';
 import React, { useEffect, useState } from 'react';
-import { HandleListe } from './components/HandleListe';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -58,15 +57,9 @@ function App() {
       />
       <div className="products-body">
         {products.map((product) => (
-          <div key={product.id} className="card col-6">
-            <div className="card-body">
+          <div key={product.id} className="card">
+            <div className="card-items">
               <h5 className="card-title">{product.title}</h5>
-              <p className="card-text">{product.description}</p>
-              <div>
-                {product.images.map((image) => (
-                  <img src={image} key={image} alt={image} loading="lazy" />
-                ))}
-              </div>
               <button
                 onClick={() => {
                   addToCart(product);
@@ -74,6 +67,19 @@ function App() {
               >
                 Add to cart
               </button>
+            </div>
+            <p className="card-text">{product.description}</p>
+            <div>
+              {product.images.map((image) => (
+                <img
+                  src={image}
+                  key={image}
+                  alt={image}
+                  height={500}
+                  width={500}
+                  loading="lazy"
+                />
+              ))}
             </div>
           </div>
         ))}
