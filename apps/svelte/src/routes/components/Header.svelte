@@ -15,7 +15,7 @@
     }
   </script>
   
-  <header class="header_container">
+  <header class="header-container">
     <div class="header">
       <h1>Products</h1>
       <button on:click={toggleCartClick}>

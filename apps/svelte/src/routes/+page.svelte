@@ -57,7 +57,6 @@
 	};
   </script>
   
-  <main>
 	<Header
 	  {numberOfProducts}
 	  {toggleCart}
@@ -65,31 +64,31 @@
 	  on:toggle={() => (toggleCart = !toggleCart)}
 	  {emptyCart}
 	  />
-	  <ul>
+	  <div class="body">
 		{#each products as product}
-		  <li>
-			<h2>{product.title}</h2>
-			<p>{product.description}</p>
-			<p>Price: ${product.price}</p>
-			<p>Discount: {product.discountPercentage}%</p>
-			<p>Rating: {product.rating}</p>
-			<p>Stock: {product.stock}</p>
-			<p>Brand: {product.brand}</p>
-			<p>Category: {product.category}</p>
-			<button on:click={() => addToCart(product)}>
-				Add to cart
-			  </button>
-			<div>
-			  {#each product.images as image}
-				<Lazy>
-				  <img src={image} alt={product.title} />
+		  	<div class="card">
+				<div class="card-items">
+					<h5>{product.title}</h5>
+					<button on:click={() => addToCart(product)}>
+						Add to cart
+					</button>
+				</div>
+				<p>{product.description}</p>
+				<ul>
+					<li>Price: ${product.price}</li>
+					<li>Discount: {product.discountPercentage}%</li>
+					<li>Rating: {product.rating}</li>
+					<li>Stock: {product.stock}</li>
+					<li>Brand: {product.brand}</li>
+					<li>Category: {product.category}</li>
+				</ul>
+				<Lazy >
+				{#each product.images as image}
+					<img src={image} alt={product.title} height={500} width={500} />
+					{/each}
 				</Lazy>
-			  {/each}
-			</div>
-			
-		  </li>
+		  	</div>
 		{/each}
-	  </ul>
-	</main>
+	  </div>
 	
   
