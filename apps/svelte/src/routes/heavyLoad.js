@@ -71342,5 +71342,6 @@ export function heavyLoad() {
     for (let i = 0; i < 7000000; i++) {
       Math.atan(Math.sqrt(Math.pow(Math.random(), 2) + Math.pow(Math.random(), 2)));
     }
+    console.log("ferdig med heavyLoad")
   }
   
