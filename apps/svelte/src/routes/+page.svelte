@@ -19,8 +19,7 @@
 	}
   
 
-	onMount(heavyLoad,
-	console.log("ferdig med heavyLoad"));
+	onMount(heavyLoad);
 
 	onMount(fetchData);
 
