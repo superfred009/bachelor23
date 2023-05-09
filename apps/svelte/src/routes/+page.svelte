@@ -19,8 +19,8 @@
 	}
   
 
-	onMount(heavyLoad);
-
+	onMount(heavyLoad,
+	console.log("ferdig med heavyLoad"));
 
 	onMount(fetchData);
 
