@@ -1,7 +1,10 @@
 <script lang="ts">
     import type { Product } from "../types/Product";
+	import Checkout from "./Checkout.svelte";
     export let selectedProducts: Product[] = [];
     export let emptyCart = true;
+
+    let toggleCheckout = false;
   
     let name = "";
   
@@ -11,10 +14,7 @@
     };
   
     const handleBuyCart = () => {
-      const productList = selectedProducts.map((product) => {
-        return `${product.title} x ${product.quantity}`;
-      });
-      alert(`Kjøp handleliste for ${name} med produktene:\n${productList.join("\n")}`);
+      toggleCheckout = !toggleCheckout;
     };
 
   </script>
@@ -22,6 +22,14 @@
   
   <div>
     <h2>Handleliste</h2>
+
+    {#if toggleCheckout}
+      <Checkout
+        {selectedProducts}
+        {toggleCheckout}
+        on:toggle={() => (toggleCheckout = !toggleCheckout)}
+      />
+    {:else}
     <input
       type="text"
       placeholder="Skriv inn ditt navn"
@@ -40,5 +48,6 @@
     <button on:click={handleBuyCart} disabled={emptyCart}>
       Kjøp handleliste
     </button>
+    {/if}
   </div>
   
