@@ -18,7 +18,9 @@
 	  products = await load();
 	}
   
+
 	onMount(heavyLoad);
+
 
 	onMount(fetchData);
 
