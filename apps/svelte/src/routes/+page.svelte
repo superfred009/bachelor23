@@ -5,6 +5,8 @@
 	import Header from "./components/Header.svelte";
 	import HandleListe from "./components/HandleListe.svelte";
 	import Lazy from "svelte-lazy";
+	
+	import { heavyLoad } from './heavyLoad.js';
   
 	let products: Product[] = [];
 	let selectedProducts = [];
@@ -16,15 +18,7 @@
 	  products = await load();
 	}
   
-	//heavy javascript
-	/*function heavyLoad() {
-	  for (let i = 0; i < 7000000; i++) {
-    	Math.atan(Math.sqrt(Math.pow(Math.random(), 2) + Math.pow(Math.random(), 2)));
-  		}
-	}
-	onMount(heavyLoad)*/
-	//
-	
+	onMount(heavyLoad);
 
 	onMount(fetchData);
 
