@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-export const Checkout = ({ products = [] }) => {
+const Checkout = ({ products = [] }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -74,3 +74,5 @@ export const Checkout = ({ products = [] }) => {
     </form>
   );
 };
+
+export default Checkout;
