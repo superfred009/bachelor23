@@ -1,6 +1,6 @@
 <script lang="ts">
-	export const prerender = false;
-	
+	export const ssr = false;
+
 	import { onMount } from "svelte";
 	import type { Product } from "./types/Product";
 	import { load } from "./utils/products";
