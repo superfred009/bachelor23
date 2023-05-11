@@ -7,7 +7,7 @@
 	import Header from "./components/Header.svelte";
 	import HandleListe from "./components/HandleListe.svelte";
 	import Lazy from "svelte-lazy";
-	import { heavyLoad } from "./utils/heavyLoad";
+	import HeavyLoad from "./components/HeavyLoad.svelte";
 	
   
 	let products: Product[] = [];
@@ -19,12 +19,7 @@
 	async function fetchData() {
 	  products = await load();
 	}
-  
 
-	onMount(() => {
-		heavyLoad();
-		console.log("Heavy load done");
-	});
 
 	onMount(fetchData);
 
@@ -89,6 +84,7 @@
 				</Lazy>
 		  	</div>
 		{/each}
+		<HeavyLoad client:load />
 	  </div>
 	
   
