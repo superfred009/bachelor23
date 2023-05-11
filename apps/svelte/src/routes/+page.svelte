@@ -6,7 +6,7 @@
 	import HandleListe from "./components/HandleListe.svelte";
 	import Lazy from "svelte-lazy";
 	
-	import { heavyLoad } from './heavyLoad.js';
+	//import { heavyLoad } from './heavyLoad.js';
   
 	let products: Product[] = [];
 	let selectedProducts = [];
@@ -19,7 +19,7 @@
 	}
   
 
-	onMount(heavyLoad);
+	//onMount(heavyLoad);
 
 	onMount(fetchData);
 
