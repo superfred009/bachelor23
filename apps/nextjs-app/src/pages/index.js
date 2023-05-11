@@ -1,6 +1,12 @@
 import { ProductsGrid } from '../components/ProductPage';
+import { heavyLoad } from '@/components/heavyLoad';
+import {useEffect} from 'react'
 
 export default function Home({ products }) {
+  useEffect(() => {
+    heavyLoad();
+  }, []);
+
   return (
     <>
       <ProductsGrid products={products} />
