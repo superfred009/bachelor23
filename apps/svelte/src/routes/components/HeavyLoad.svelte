@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-    import { heavyLoad } from "./utils/heavyLoad";
+    import { heavyLoad } from "../utils/heavyLoad";
 
     onMount(() => {
         heavyLoad();
