@@ -60,6 +60,9 @@
 	  {emptyCart}
 	  />
 	  <div class="body">
+		<button on:click={() => heavyLoad}>
+			test Heavyload
+		</button>
 		{#each products as product}
 		  	<div class="card">
 				<div class="card-items">
