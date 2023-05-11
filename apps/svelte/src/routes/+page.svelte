@@ -19,7 +19,7 @@
 	}
   
 
-	onMount(heavyLoad);
+	//onMount(heavyLoad);
 
 	onMount(fetchData);
 
