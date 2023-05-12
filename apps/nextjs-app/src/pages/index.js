@@ -1,11 +1,11 @@
 import { ProductsGrid } from '../components/ProductPage';
-import { heavyLoad } from '@/components/heavyLoad';
+//import { heavyLoad } from '@/components/heavyLoad';
 import {useEffect} from 'react'
 
 export default function Home({ products }) {
-  useEffect(() => {
+  /*useEffect(() => {
     heavyLoad();
-  }, []);
+  }, []);*/
 
   return (
     <>
