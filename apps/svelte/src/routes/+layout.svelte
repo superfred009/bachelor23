@@ -1,9 +1,7 @@
 <script>
 	import './styles.css';
 </script>
-<script context="module">
-	export const ssr = true;
-</script>
+
 <div class="app">
 
 	<main>
