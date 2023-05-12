@@ -2,7 +2,7 @@ import './App.css';
 import { Header } from './components/Header';
 import React, { useEffect, useState } from 'react';
 
-import {heavyLoad} from "./heavyLoad"
+//import {heavyLoad} from "./heavyLoad"
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -10,7 +10,7 @@ function App() {
   const [selectedProducts, setSelectedProducts] = useState([]);
 
   useEffect(() => {
-    heavyLoad();
+    //heavyLoad();
     async function fetchData() {
       try {
         // Request API data twice simultaneously
