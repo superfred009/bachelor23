@@ -6,7 +6,7 @@
 	import Header from "./components/Header.svelte";
 	import HandleListe from "./components/HandleListe.svelte";
 	import Lazy from "svelte-lazy";
-	import HeavyLoad from "./components/HeavyLoad.svelte";
+	//import HeavyLoad from "./components/HeavyLoad.svelte";
 	
   
 	let products: Product[] = [];
@@ -83,7 +83,7 @@
 				</Lazy>
 		  	</div>
 		{/each}
-		<HeavyLoad />
+		//<HeavyLoad />
 	  </div>
 	
   
