@@ -83,7 +83,7 @@
 				</Lazy>
 		  	</div>
 		{/each}
-		//<HeavyLoad />
+		<!--<HeavyLoad />-->
 	  </div>
 	
   
