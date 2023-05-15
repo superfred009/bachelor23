@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { Product } from "../types/Product";
-	import Checkout from "./Checkout.svelte";
+	  import Checkout from "./Checkout.svelte";
     export let selectedProducts: Product[] = [];
     export let emptyCart = true;
 

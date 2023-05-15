@@ -2,12 +2,15 @@ import './App.css';
 import { Header } from './components/Header';
 import React, { useEffect, useState } from 'react';
 
+import {heavyLoad} from "./heavyLoad"
+
 function App() {
   const [products, setProducts] = useState([]);
   const [isLoaded, setLoaded] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
 
   useEffect(() => {
+    heavyLoad();
     async function fetchData() {
       try {
         // Request API data twice simultaneously

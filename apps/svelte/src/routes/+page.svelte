@@ -1,12 +1,13 @@
 <script lang="ts">
+
 	import { onMount } from "svelte";
 	import type { Product } from "./types/Product";
 	import { load } from "./utils/products";
 	import Header from "./components/Header.svelte";
 	import HandleListe from "./components/HandleListe.svelte";
 	import Lazy from "svelte-lazy";
+	import HeavyLoad from "./components/HeavyLoad.svelte";
 	
-	import { heavyLoad } from './heavyLoad.js';
   
 	let products: Product[] = [];
 	let selectedProducts = [];
@@ -17,9 +18,6 @@
 	async function fetchData() {
 	  products = await load();
 	}
-  
-
-	onMount(heavyLoad);
 
 
 	onMount(fetchData);
@@ -85,6 +83,7 @@
 				</Lazy>
 		  	</div>
 		{/each}
+		<HeavyLoad />
 	  </div>
 	
   
