@@ -9,13 +9,13 @@ React: ...\apps\vanilla-react> npm start
 # Pakker installert
 For npm(Node Package Manager) må Node.js installeres på PC-en.
 ## React
-npm install React ReactDom
+npm install react react-dom react-scripts tailwindcss
 ## Astro
-
+npm install astro @astrojs/react react-dom
 ## Svelte
-
+npm install @sveltejs/kit @sveltejs/adapter-auto svelte svelte-preprocess vite
 ## Nextjs
-
+npm install next react react-dom @next/font
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
