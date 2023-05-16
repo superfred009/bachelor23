@@ -61,7 +61,7 @@ export const ProductsGrid = ({ products }) => {
                   alt={`Image of ${product.title} `}
                   width={500}
                   height={500}
-                  loading="lazy"
+                  //loading="lazy"
                 />
               ))}
             </div>
