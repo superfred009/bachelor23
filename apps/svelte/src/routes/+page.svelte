@@ -19,7 +19,6 @@
 	  products = await load();
 	}
 
-
 	onMount(fetchData);
 
 	console.log(emptyCart)
@@ -76,13 +75,11 @@
 					<li>Brand: {product.brand}</li>
 					<li>Category: {product.category}</li>
 				</ul>
-				<!-- <Lazy > -->
-					<div>
-				{#each product.images as image}
-					<img src={image} alt={product.title} height={500} width={500} />
+				<Lazy > 
+					{#each product.images as image}
+						<img src={image} alt={product.title} height={500} width={500} />
 					{/each}
-				</div>
-				<!-- </Lazy> -->
+				</Lazy> 
 		  	</div>
 		{/each}
 		<HeavyLoad />
